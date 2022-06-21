@@ -1,0 +1,25 @@
+<div>
+  Today's squardle puzzle: 
+  <div id="words">
+    
+  </div>
+  <div id="optional">
+  </div>
+</div>
+
+<script src="https://squaredle.app/api/today-puzzle-config.js"></script>
+<script>
+e = "5pyf0gcrl1a9oe3ui8d2htn67sqjkxbmw4vzPYFGCRLAOEUIDHTNSQJKXBMWVZ".split("");
+g = function(m) {
+    var h = e.indexOf(m);
+    return -1 == h ? m : e[(h - 12 + e.length) % e.length];
+}
+f = function(s) {
+  encoded = Array.from(s).map(g).join("");
+  return atob(encoded);
+}
+todaysWords = f(gPuzzleConfig["puzzles"][gTodayDateStr]["wordScores"]);
+optionalWords = f(gPuzzleConfig["puzzles"][gTodayDateStr]["optionalWordScores"]);
+document.getElementById("words").innerHTML = todaysWords;
+document.getElementById("optional").innerHTML = optionalWords;
+</script>
